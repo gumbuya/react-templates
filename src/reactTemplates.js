@@ -41,6 +41,28 @@ function getTagTemplateString(simpleTagTemplate, shouldCreateElement) {
     return shouldCreateElement ? 'React.createElement.apply(this, [<%= name %>,<%= props %><%= children %>])' : '<%= name %>.apply(this, [<%= props %><%= children %>])';
 }
 
+var templateJsonTemplate = _.template("define(<%= name ? '\"'+name + '\", ' : '' %>[<%= requirePaths %>], function (<%= requireNames %>) {\n'use strict';\n <%= injectedFunctions %>\nreturn function(){ return <%= body %>}; // OUR. TEMKAPLTEl.\n});")
+var templateAMDTemplate = _.template("define(<%= name ? '\"'+name + '\", ' : '' %>[<%= requirePaths %>], function (<%= requireNames %>) {\n'use strict';\n <%= injectedFunctions %>\nreturn function(){ return <%= body %>};\n});");
+var templateCommonJSTemplate = _.template("'use strict';\n<%= vars %>\n\n<%= injectedFunctions %>\nmodule.exports = function(){ return <%= body %>};\n");
+var templateES6Template = _.template('<%= vars %>\n\n<%= injectedFunctions %>\nexport default function(){ return <%= body %>}\n');
+var templatePJSTemplate = _.template('var <%= name %> = function () {\n' +
+                                '<%= injectedFunctions %>\n' +
+                                'return <%= body %>\n' +
+                                '};\n');
+var templateTypescriptTemplate = _.template('<%= vars %>\n\n<%= injectedFunctions %>\nvar fn = function() { return <%= body %> };\nexport = fn\n');
+var templateJSRTTemplate = _.template('(function () {\n <%= injectedFunctions %>\n return function(){\nreturn <%= body %>}}\n)()');
+
+var templates = {
+    amd: templateAMDTemplate,
+    commonjs: templateCommonJSTemplate,
+    typescript: templateTypescriptTemplate,
+    es6: templateES6Template,
+    none: templatePJSTemplate,
+    json: templateJsonTemplate,
+    jsrt: templateJSRTTemplate
+};
+>>>>>>> First attempt
+
 
 var commentTemplate = _.template(' /* <%= data %> */ ');
 
