@@ -25,6 +25,7 @@ var simpleTagTemplateCreateElement = _.template('React.createElement(<%= name %>
 var tagTemplateCreateElement = _.template('React.createElement.apply(this, [<%= name %>,<%= props %><%= children %>])');
 var commentTemplate = _.template(' /* <%= data %> */ ');
 
+var templateJsonTemplate = _.template("define(<%= name ? '\"'+name + '\", ' : '' %>[<%= requirePaths %>], function (<%= requireNames %>) {\n'use strict';\n <%= injectedFunctions %>\nreturn function(){ return <%= body %>}; // OUR. TEMKAPLTEl.\n});")
 var templateAMDTemplate = _.template("define(<%= name ? '\"'+name + '\", ' : '' %>[<%= requirePaths %>], function (<%= requireNames %>) {\n'use strict';\n <%= injectedFunctions %>\nreturn function(){ return <%= body %>};\n});");
 var templateCommonJSTemplate = _.template("'use strict';\n<%= vars %>\n\n<%= injectedFunctions %>\nmodule.exports = function(){ return <%= body %>};\n");
 var templateES6Template = _.template('<%= vars %>\n\n<%= injectedFunctions %>\nexport default function(){ return <%= body %>}\n');
@@ -41,6 +42,7 @@ var templates = {
     typescript: templateTypescriptTemplate,
     es6: templateES6Template,
     none: templatePJSTemplate,
+    json: templateJsonTemplate,
     jsrt: templateJSRTTemplate
 };
 
