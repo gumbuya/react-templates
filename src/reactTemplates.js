@@ -536,6 +536,10 @@ function convertRT(html, reportContext, options) {
                 throw RTCodeError.build('rt-require may have no children', context, tag);
             }
             defines[tag.attribs.dependency] = tag.attribs.as;
+        } else if (tag.name === 'script')
+        {
+          console.log("HIS IS A TAG")
+          console.log(tag);
         } else if (firstTag === null) {
             firstTag = tag;
         } else {
