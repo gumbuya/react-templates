@@ -63,7 +63,6 @@ var templates = {
     json: templateJsonTemplate,
     jsrt: templateJSRTTemplate
 };
->>>>>>> First attempt
 
 
 var commentTemplate = _.template(' /* <%= data %> */ ');

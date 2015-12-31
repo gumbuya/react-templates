@@ -34,7 +34,7 @@ _.forEach(reactSupportedAttributes, function (attributeReactName) {
 
 var htmlSelfClosingTags = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
 
-
+var templateDefineAMDTemplate = _.template("require([<%= requirePaths %>], function (<%= requireNames %>) {\n'use strict';\n<%= injectedFunctions %>\n var createFunction = function(){return <%= body %>}\ncallback(createFunction);\n});");
 var templateAMDTemplate = _.template("define(<%= name ? '\"'+name + '\", ' : '' %>[<%= requirePaths %>], function (<%= requireNames %>) {\n'use strict';\n <%= injectedFunctions %>\nreturn function(){ return <%= body %>};\n});");
 var templateCommonJSTemplate = _.template("'use strict';\n<%= vars %>\n\n<%= injectedFunctions %>\nmodule.exports = function(){ return <%= body %>};\n");
 var templateES6Template = _.template('<%= vars %>\n\n<%= injectedFunctions %>\nexport default function(){ return <%= body %>}\n');
@@ -47,6 +47,7 @@ var templateTypescriptTemplate = _.template('<%= vars %>\n\n<%= injectedFunction
 var templateJSRTTemplate = _.template('(function () {\n <%= injectedFunctions %>\n return function(){\nreturn <%= body %>}}\n)()');
 
 var templates = {
+    amdRequire: templateDefineAMDTemplate,
     amd: templateAMDTemplate,
     commonjs: templateCommonJSTemplate,
     typescript: templateTypescriptTemplate,
