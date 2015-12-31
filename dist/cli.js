@@ -21,7 +21,6 @@ function executeOptions(currentOptions) {
     context.options.format = currentOptions.format || 'stylish';
 
     if (currentOptions.version) {
-        console.log(`v${pkg.version}`);
     } else if (currentOptions.help) {
         if (files.length) {
             console.log(options.generateHelpForOption(files[0]));
