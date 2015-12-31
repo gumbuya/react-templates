@@ -17,7 +17,6 @@ npm-debug.log
 /bower_components/*
 
 ### babel ###
-/dist
 
 /web
 /target
